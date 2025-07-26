@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Portfolio Website</title>
+</head>
+
+<body>
+    <header>
+        <a href="#" class="logo shiny-text">HIMANSHU</a>
+        <nav>
+            <a href="#" class="active">Home</a>
+            <a href="#">Services</a>
+            <a href="#">Skills</a>
+            <a href="#">Education</a>
+            <a href="#">Experience</a>
+            <a href="#">Contact</a>
+        </nav>
+    </header>
+
+
+    <!-- <script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.14/build/spline-viewer.js"></script>
+<spline-viewer url="https://prod.spline.design/2SpQzv5k1NksZdwv/scene.splinecode"></spline-viewer> -->
+    <!-- Galaxy background -->
+    <!-- <div class="galaxy-bg">
+        <canvas id="stars-canvas"></canvas>
+    </div> -->
+
+    <section class="home">
+        <div class="home-img">
+            <img src="./Images/profilepic.jpg" alt="Himanshu Sekher Padhy" />
+        </div>
+        <div class="home-content">
+            <h1>Hi, I'm <span>Himanshu</span></h1>
+            <h3 class="typing-text">I'm a <span></span></h3>
+            <p>
+                <strong class="shiny-text">Full-Stack Developer</strong> based in Bhubaneswar, Odisha, India.
+                <br />I'm passionate about cutting-edge, pixel-perfect, beautiful interfaces and intuitively
+                implemented UX.
+                <br /><br />
+                "Turning Ideas into Real Life Product is my Calling."
+            </p>
+            <div class="social-icons">
+                <a href="https://www.linkedin.com/in/himamshu-sekher-padhy-561433322">
+                    <i class="fa-brands fa-linkedin"></i></a>
+                <a href="#"><i class="fa-brands fa-github"></i></a>
+                <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="https://www.instagram.com/himanshu___1602"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+            <a href="#" class="btn">Hire me</a>
+        </div>
+    </section>
+
+    <!-- ABOUT section  -->
+    <section class="about section" id="about">
+            <span class="section__subtitle">My Intro</span>
+            <h2 class="section__title">About Me</h2>
+
+            <div class="about__container container grid">
+                <img src="./Images/profilepic.jpg" alt="" class="about__img">
+
+                <div class="about__data">
+                    <div class="about__info">
+                        <div class="about__box">
+                            <i class='bx bx-award about__icon'></i>
+                            <h3 class="about__title">Experience</h3>
+                            <span class="about__subtitle">Fresher</span>
+                        </div>
+                        <div class="about__box">
+                            <i class='bx bx-briefcase-alt about__icon'></i>
+                            <h3 class="about__title">Completed</h3>
+                            <span class="about__subtitle">5 Projects</span>
+                        </div>
+                        <div class="about__box">
+                            <i class='bx bx-support about__icon'></i>
+                            <h3 class="about__title">Support</h3>
+                            <span class="about__subtitle">Online 24/7</span>
+                        </div>
+                    </div>
+
+                    <p class="about__description">
+                        Creative UI/UX developer crafting intuitive, responsive, and user-focused designs. Passionate about seamless experiences, pixel-perfect detail, and turning ideas into elegant digital interfaces.
+                    </p>
+
+                    <a href="#contact" class="button about__button-contact">Contact Me</a>
+                </div>
+            </div>
+        </section>
+
+    <script>
+  const canvas = document.getElementById("stars-canvas");
+  const ctx = canvas.getContext("2d");
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+
+  resizeCanvas();
+  window.addEventListener("resize", resizeCanvas);
+
+  const stars = [];
+  const starCount = 300; // more stars now
+
+  // Generate stars
+  for (let i = 0; i < starCount; i++) {
+    stars.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      radius: Math.random() * 1.2 + 0.2,
+      velocity: Math.random() * 0.4 + 0.1,
+      opacity: Math.random() * 0.5 + 0.5,
+      flicker: Math.random() * 0.05 + 0.01,
+      color: randomGalaxyColor()
+    });
+  }
+
+  function randomGalaxyColor() {
+    const colors = ['#ffffff', '#ffe9c4', '#d4fbff', '#ffd6fa', '#b0caff'];
+    return colors[Math.floor(Math.random() * colors.length)];
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    stars.forEach((star) => {
+      // twinkle
+      star.opacity += star.flicker;
+      if (star.opacity > 1 || star.opacity < 0.3) star.flicker = -star.flicker;
+
+      ctx.beginPath();
+      ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${hexToRgb(star.color)}, ${star.opacity})`;
+      ctx.fill();
+
+      // drift
+      star.y += star.velocity;
+      if (star.y > canvas.height) {
+        star.y = 0;
+        star.x = Math.random() * canvas.width;
+      }
+    });
+
+    requestAnimationFrame(animate);
+  }
+
+  function hexToRgb(hex) {
+    hex = hex.replace('#', '');
+    const bigint = parseInt(hex, 16);
+    const r = (bigint >> 16) & 255;
+    const g = (bigint >> 8) & 255;
+    const b = bigint & 255;
+    return `${r}, ${g}, ${b}`;
+  }
+
+  animate();
+</script>
+
+</body>
+
+</html>
